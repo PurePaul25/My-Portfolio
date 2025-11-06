@@ -1,6 +1,25 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, User, MessageSquare, LoaderCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
+
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.3,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -22,26 +41,10 @@ export default function Contact() {
         // Giả lập thời gian chờ 2 giây
         setTimeout(() => {
             console.log('Form data submitted:', formData);
-            alert('Thank you for your message! I will get back to you soon.');
+            toast.success('Thank you for your message! I will get back to you soon.');
             setFormData({ name: '', email: '', message: '' });
             setIsSubmitting(false);
         }, 2000);
-    };
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.3,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     };
 
     return (

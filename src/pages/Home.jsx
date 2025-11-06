@@ -5,22 +5,22 @@ import { ArrowRight, Mail } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
-function Home() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2, // Hiệu ứng xuất hiện lần lượt cho các phần tử con
-            },
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2, // Hiệu ứng xuất hiện lần lượt cho các phần tử con
         },
-    };
+    },
+};
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-    };
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
+function Home() {
     return (
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-50 my-20">
             {/* Background Gradient */}

@@ -1,10 +1,12 @@
 import { Github, ExternalLink } from 'lucide-react';
 
-import { motion } from 'framer-motion';
 import projectMusicPlayer from '../assets/project-music-player.png';
 import projectFoodHubClone from '../assets/project-food-hub.png';
 import projectQuizMaster from '../assets/project-quiz-master.png';
 import projectSakaeEducation from '../assets/project-sakae-education.png';
+
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
 const projects = [
     {
@@ -73,9 +75,9 @@ export default function Projects() {
                 </div>
                 <div className="relative">
                     {/* Lớp phủ mờ bên trái */}
-                    <div className="absolute top-0 bottom-0 left-0 w-12 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute top-0 bottom-0 left-0 w-12 bg-linear-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
                     {/* Lớp phủ mờ bên phải */}
-                    <div className="absolute top-0 bottom-0 right-0 w-12 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute top-0 bottom-0 right-0 w-12 bg-linear-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
                     <motion.div
                         variants={containerVariants}
@@ -92,24 +94,27 @@ export default function Projects() {
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="group relative snap-center flex-shrink-0 w-[320px] h-[420px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+                                // Thêm tabIndex={0} để thẻ có thể nhận focus khi chạm trên mobile
+                                // Thêm group-focus-within để kích hoạt hiệu ứng khi thẻ được focus
+                                className="group relative snap-center shrink-0 w-[340px] h-[420px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-50 transition-all duration-500"
+                                tabIndex={0}
                             >
                                 <img
                                     src={p.image}
                                     alt={p.title}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-focus-within:scale-110"
                                 />
                                 {/* Lớp phủ gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
 
                                 {/* Nội dung thẻ */}
                                 <div className="relative h-full flex flex-col justify-end p-6 text-white transition-all duration-500">
-                                    <h3 className="text-2xl font-bold mb-2 transform transition-transform duration-500 ease-in-out group-hover:-translate-y-16">
+                                    <h3 className="text-2xl font-bold mb-2 transform transition-transform duration-500 ease-in-out group-hover:-translate-y-16 group-focus-within:-translate-y-16">
                                         {p.title}
                                     </h3>
 
                                     {/* Nội dung ẩn, chỉ hiện khi hover */}
-                                    <div className="opacity-0 transform transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-16 space-y-4">
+                                    <div className="opacity-0 transform transition-all duration-500 ease-in-out group-hover:opacity-100 group-focus-within:opacity-100 group-hover:-translate-y-16 group-focus-within:-translate-y-16 space-y-4">
                                         <p className="text-gray-200 text-sm">{p.description}</p>
                                         <div className="flex flex-wrap gap-2">
                                             {p.tech.map((t, i) => (
@@ -124,7 +129,7 @@ export default function Projects() {
                                     </div>
 
                                     {/* Các nút bấm */}
-                                    <div className="absolute bottom-6 left-6 right-6 flex gap-4 opacity-0 transform translate-y-8 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">
+                                    <div className="absolute bottom-6 left-6 right-6 flex gap-4 opacity-0 transform translate-y-8 transition-all duration-500 ease-in-out group-hover:opacity-100 group-focus-within:opacity-100 group-hover:translate-y-0 group-focus-within:translate-y-0">
                                         <a
                                             href={p.github}
                                             target="_blank"
