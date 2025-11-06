@@ -12,9 +12,4 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    server: {
-        port: 3002,
-        strictPort: false,
-        host: false,
-    },
 });
