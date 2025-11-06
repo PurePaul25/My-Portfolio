@@ -1,6 +1,6 @@
 # 🌐 Pure Paul's (Phát) Portfolio
 
-🚀 A modern personal portfolio website built with **React Compiler + Vite**, showcasing my skills, projects, and experience in frontend development.
+🚀 A modern personal portfolio website built with **React Compiler + Vite**, showcasing my skills, projects, and experience in fullstack development.
 
 ---
 
@@ -56,9 +56,9 @@ Then open: http://localhost:5173
 
 ### 👨‍💻 About Me
 
-Hi, I'm **Pure Paul (Phát)**, a frontend developer with a passion for building beautiful, responsive, and user-centric web experiences. I enjoy turning complex problems into simple and intuitive designs.
+Hi, I'm **Pure Paul (Phát)**, a fullstack developer with a passion for building complete, scalable, and user-centric web applications. I enjoy turning complex problems into simple and intuitive solutions, from front to back.
 
-My main focus is on the React ecosystem, but I'm always excited to learn new technologies. I'm currently exploring [Next.js/Three.js/etc.] to enhance my full-stack capabilities.
+My main focus is on the MERN stack (MongoDB, Express, React, Node.js), but I'm always excited to learn new technologies. I'm currently exploring [Next.js/GraphQL/etc.] to enhance my capabilities.
 
 Feel free to connect with me or check out my work!
 
@@ -123,9 +123,9 @@ Sau đó mở: http://localhost:5173
 
 ### 👨‍💻 Về tôi
 
-Xin chào, tôi là **Pure Paul (Phát)**, một lập trình viên frontend với đam mê xây dựng các trải nghiệm web đẹp mắt, responsive và lấy người dùng làm trung tâm. Tôi thích biến những vấn đề phức tạp thành các thiết kế đơn giản và trực quan.
+Xin chào, tôi là **Pure Paul (Phát)**, một lập trình viên fullstack với đam mê xây dựng các ứng dụng web hoàn chỉnh, có khả năng mở rộng và lấy người dùng làm trung tâm. Tôi thích biến những vấn đề phức tạp thành các giải pháp đơn giản và trực quan, từ frontend đến backend.
 
-Hướng đi chính của tôi là hệ sinh thái React, nhưng tôi luôn hào hứng học hỏi các công nghệ mới. Hiện tại, tôi đang tìm hiểu [Next.js/Three.js/v.v.] để nâng cao kỹ năng full-stack của mình.
+Hướng đi chính của tôi là MERN stack (MongoDB, Express, React, Node.js), nhưng tôi luôn hào hứng học hỏi các công nghệ mới. Hiện tại, tôi đang tìm hiểu [Next.js/GraphQL/v.v.] để nâng cao kỹ năng của mình.
 
 Đừng ngần ngại kết nối hoặc xem qua các dự án của tôi nhé!
 

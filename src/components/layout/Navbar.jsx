@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,12 +6,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
+    // State để theo dõi mục nào đang active
+    const [activeSection, setActiveSection] = useState('home');
+
     const navItems = [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
-        { name: 'Projects', path: '/projects' },
-        { name: 'Contact', path: '/contact' },
+        { name: 'Home', path: '#home' },
+        { name: 'About', path: '#about' },
+        { name: 'Projects', path: '#projects' },
+        { name: 'Contact', path: '#contact' },
     ];
+
+    // Logic để xác định mục active khi cuộn trang
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = navItems.map((item) => document.getElementById(item.path.substring(1)));
+            const scrollPosition = window.scrollY + 150; // Thêm offset để active sớm hơn
+
+            for (const section of sections) {
+                if (
+                    section &&
+                    scrollPosition >= section.offsetTop &&
+                    scrollPosition < section.offsetTop + section.offsetHeight
+                ) {
+                    setActiveSection(section.id);
+                    break;
+                }
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [navItems]);
 
     return (
         <>
@@ -20,36 +43,34 @@ function Navbar() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         {/* Logo */}
-                        <Link to="/" className="text-2xl font-bold text-green-600 hover:opacity-80 transition-opacity">
+                        <a
+                            href="#home"
+                            className="text-2xl font-bold text-green-600 hover:opacity-80 transition-opacity"
+                        >
                             Paul<span className="text-gray-800"> Portfolio</span>
-                        </Link>
+                        </a>
 
                         {/* Menu cho màn hình lớn */}
                         <ul className="hidden md:flex items-center space-x-8">
                             {navItems.map((item) => (
-                                <li key={item.name}>
-                                    <NavLink to={item.path}>
-                                        {({ isActive }) => (
-                                            <div className="relative py-2">
-                                                <span
-                                                    className={`font-medium transition-colors duration-300 ${
-                                                        isActive
-                                                            ? 'text-green-600'
-                                                            : 'text-gray-700 hover:text-green-600'
-                                                    }`}
-                                                >
-                                                    {item.name}
-                                                </span>
-                                                {isActive && (
-                                                    <motion.span
-                                                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600"
-                                                        layoutId="underline"
-                                                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                                                    />
-                                                )}
-                                            </div>
-                                        )}
-                                    </NavLink>
+                                <li key={item.name} className="relative py-2">
+                                    <a
+                                        href={item.path}
+                                        className={`font-medium transition-colors duration-300 ${
+                                            activeSection === item.path.substring(1)
+                                                ? 'text-green-600'
+                                                : 'text-gray-700 hover:text-green-600'
+                                        }`}
+                                    >
+                                        {item.name}
+                                    </a>
+                                    {activeSection === item.path.substring(1) && (
+                                        <motion.span
+                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600"
+                                            layoutId="underline"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                        />
+                                    )}
                                 </li>
                             ))}
                         </ul>
@@ -81,19 +102,17 @@ function Navbar() {
                         <ul className="flex flex-col items-center px-4 py-4 space-y-1">
                             {navItems.map((item) => (
                                 <li key={item.name} className="w-full">
-                                    <NavLink
-                                        to={item.path}
+                                    <a
+                                        href={item.path}
                                         onClick={() => setIsOpen(false)}
-                                        className={({ isActive }) =>
-                                            `block w-full text-center text-lg font-medium py-3 rounded-md transition-colors duration-300 ${
-                                                isActive
-                                                    ? 'bg-green-100 text-green-700'
-                                                    : 'text-gray-700 hover:bg-gray-100'
-                                            }`
-                                        }
+                                        className={`block w-full text-center text-lg font-medium py-3 rounded-md transition-colors duration-300 ${
+                                            activeSection === item.path.substring(1)
+                                                ? 'bg-green-100 text-green-700'
+                                                : 'text-gray-700 hover:bg-gray-100'
+                                        }`}
                                     >
                                         {item.name}
-                                    </NavLink>
+                                    </a>
                                 </li>
                             ))}
                         </ul>
