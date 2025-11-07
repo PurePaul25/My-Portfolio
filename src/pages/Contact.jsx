@@ -121,7 +121,7 @@ export default function Contact() {
                         />
                         <label
                             htmlFor="name"
-                            className="absolute left-12 top-3 text-gray-400 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:left-11 peer-focus:bg-gray-800 peer-focus:text-sm peer-focus:text-green-500 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-green-500 px-1 pointer-events-none"
+                            className="absolute left-12 top-3 text-gray-400 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:left-11 peer-focus:bg-gray-800/50 peer-focus:backdrop-blur-sm peer-focus:text-sm peer-focus:text-green-500 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-green-500 peer-[:not(:placeholder-shown)]:bg-gray-800/50 peer-[:not(:placeholder-shown)]:backdrop-blur-sm px-1 pointer-events-none"
                         >
                             Your Name
                         </label>
@@ -140,7 +140,7 @@ export default function Contact() {
                         />
                         <label
                             htmlFor="email"
-                            className="absolute left-12 top-3 text-gray-400 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:left-11 peer-focus:bg-gray-800 peer-focus:text-sm peer-focus:text-green-500 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-green-500 px-1 pointer-events-none"
+                            className="absolute left-12 top-3 text-gray-400 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:left-11 peer-focus:bg-gray-800/50 peer-focus:backdrop-blur-sm peer-focus:text-sm peer-focus:text-green-500 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-green-500 peer-[:not(:placeholder-shown)]:bg-gray-800/50 peer-[:not(:placeholder-shown)]:backdrop-blur-sm px-1 pointer-events-none"
                         >
                             Your Email
                         </label>
@@ -159,7 +159,7 @@ export default function Contact() {
                         ></textarea>
                         <label
                             htmlFor="message"
-                            className="absolute left-12 top-3 text-gray-400 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:left-11 peer-focus:bg-gray-800 peer-focus:text-sm peer-focus:text-green-500 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-green-500  px-1 pointer-events-none"
+                            className="absolute left-12 top-3 text-gray-400 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:left-11 peer-focus:bg-gray-800/50 peer-focus:backdrop-blur-sm peer-focus:text-sm peer-focus:text-green-500 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-green-500 peer-[:not(:placeholder-shown)]:bg-gray-800/50 peer-[:not(:placeholder-shown)]:backdrop-blur-sm px-1 pointer-events-none"
                         >
                             Your Message
                         </label>
@@ -168,7 +168,7 @@ export default function Contact() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full flex items-center justify-center gap-2 bg-green-600 text-white font-bold py-3 rounded-lg transition-all duration-300 hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-green-500 disabled:bg-green-800 disabled:cursor-not-allowed"
+                        className="w-full flex items-center justify-center gap-2 bg-green-600 text-white cursor-pointer font-bold py-3 rounded-lg transition-all duration-300 hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-green-500 disabled:bg-green-800 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? (
                             <>

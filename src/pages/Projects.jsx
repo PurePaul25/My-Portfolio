@@ -64,7 +64,7 @@ export default function Projects() {
         // Thêm hiệu ứng gradient mờ ở hai bên cho khu vực cuộn ngang
         <section className="relative py-28 bg-gray-50 overflow-hidden">
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px]"></div>
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-4">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800">
                         My <span className="text-green-600">Projects</span>
