@@ -4,6 +4,7 @@ import projectMusicPlayer from '../assets/project-music-player.png';
 import projectFoodHubClone from '../assets/project-food-hub.png';
 import projectQuizMaster from '../assets/project-quiz-master.png';
 import projectSakaeEducation from '../assets/project-sakae-education.png';
+import projectFreshFoodsOnline from '../assets/project-fresh-foods-online.png';
 
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
@@ -41,6 +42,14 @@ const projects = [
         tech: ['Vite', 'React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
         github: 'https://github.com/PurePaul25/Sakae-Japanese-Education-Thu-Duc-Clone',
         demo: 'https://sakae-japanese-education-thu-duc.vercel.app/',
+    },
+    {
+        title: 'Fresh Foods Online E-commerce',
+        description: 'An e-commerce website for fresh foods built with React and Tailwind CSS.',
+        image: projectFreshFoodsOnline,
+        tech: ['React', 'Tailwind CSS', 'Vite', 'Node.js', 'MongoDB'],
+        github: 'https://github.com/PurePaul25/Fresh-Foods-Online---Market4P',
+        demo: 'https://fresh-foods-online-market4p.vercel.app/',
     },
 ];
 
