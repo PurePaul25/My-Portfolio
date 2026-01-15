@@ -1,4 +1,5 @@
 import { Github, ExternalLink } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 import projectMusicPlayer from '../assets/project-music-player.png';
 import projectFoodHubClone from '../assets/project-food-hub.png';
@@ -69,12 +70,51 @@ const itemVariants = {
 };
 
 export default function Projects() {
+    const sliderRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleMouseDown = (e) => {
+        if (!sliderRef.current) return;
+        setIsDragging(true);
+        // Vị trí bắt đầu của con trỏ so với phần tử
+        setStartX(e.pageX - sliderRef.current.offsetLeft);
+        // Vị trí scroll hiện tại
+        setScrollLeft(sliderRef.current.scrollLeft);
+        // Thay đổi con trỏ và ngăn chọn văn bản
+        sliderRef.current.style.cursor = 'grabbing';
+        sliderRef.current.style.userSelect = 'none';
+        // Tắt snap và smooth scroll khi đang kéo để tránh xung đột gây giật
+        sliderRef.current.style.scrollBehavior = 'auto';
+        sliderRef.current.style.scrollSnapType = 'none';
+    };
+
+    const handleMouseLeaveOrUp = () => {
+        if (!sliderRef.current || !isDragging) return;
+        setIsDragging(false);
+        // Trả lại con trỏ và cho phép chọn văn bản
+        sliderRef.current.style.cursor = 'grab';
+        sliderRef.current.style.removeProperty('user-select');
+        // Khôi phục lại snap và smooth scroll để thẻ tự căn chỉnh đẹp mắt khi thả tay
+        sliderRef.current.style.removeProperty('scroll-behavior');
+        sliderRef.current.style.removeProperty('scroll-snap-type');
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging || !sliderRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - sliderRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // Tăng tốc độ kéo, có thể điều chỉnh
+        sliderRef.current.scrollLeft = scrollLeft - walk;
+    };
+
     return (
         // Thêm hiệu ứng gradient mờ ở hai bên cho khu vực cuộn ngang
         <section className="relative py-28 bg-gray-50 overflow-hidden">
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px]"></div>
             <div className="max-w-6xl mx-auto px-4">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800">
                         My <span className="text-green-600">Projects</span>
                     </h2>
@@ -84,16 +124,21 @@ export default function Projects() {
                 </div>
                 <div className="relative">
                     {/* Lớp phủ mờ bên trái */}
-                    <div className="absolute top-0 bottom-0 left-0 w-12 bg-linear-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute top-0 bottom-0 left-0 w-6 bg-linear-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
                     {/* Lớp phủ mờ bên phải */}
-                    <div className="absolute top-0 bottom-0 right-0 w-12 bg-linear-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute top-0 bottom-0 right-0 w-6 bg-linear-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
                     <motion.div
+                        ref={sliderRef}
+                        onMouseDown={handleMouseDown}
+                        onMouseLeave={handleMouseLeaveOrUp}
+                        onMouseUp={handleMouseLeaveOrUp}
+                        onMouseMove={handleMouseMove}
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.1 }}
-                        className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 px-4
+                        className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 px-8 pt-1 md:mx-2 cursor-grab
                                    [&::-webkit-scrollbar]:h-2
                                    [&::-webkit-scrollbar-track]:bg-gray-200
                                    [&::-webkit-scrollbar-thumb]:bg-green-600 [&::-webkit-scrollbar-thumb]:rounded-full
@@ -105,7 +150,7 @@ export default function Projects() {
                                 variants={itemVariants}
                                 // Thêm tabIndex={0} để thẻ có thể nhận focus khi chạm trên mobile
                                 // Thêm group-focus-within để kích hoạt hiệu ứng khi thẻ được focus
-                                className="group relative snap-center shrink-0 w-[340px] h-[420px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-50 transition-all duration-500"
+                                className="group relative snap-center shrink-0 w-[310px] h-[420px]  md:w-[340px] md:h-[420px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-50 transition-all duration-500"
                                 tabIndex={0}
                             >
                                 <img
@@ -114,7 +159,7 @@ export default function Projects() {
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-focus-within:scale-110"
                                 />
                                 {/* Lớp phủ gradient */}
-                                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+                                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/50 to-transparent"></div>
 
                                 {/* Nội dung thẻ */}
                                 <div className="relative h-full flex flex-col justify-end p-6 text-white transition-all duration-500">

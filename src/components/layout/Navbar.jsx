@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,12 +9,15 @@ function Navbar() {
     // State để theo dõi mục nào đang active
     const [activeSection, setActiveSection] = useState('home');
 
-    const navItems = [
-        { name: 'Home', path: '#home' },
-        { name: 'About', path: '#about' },
-        { name: 'Projects', path: '#projects' },
-        { name: 'Contact', path: '#contact' },
-    ];
+    const navItems = useMemo(
+        () => [
+            { name: 'Home', path: '#home' },
+            { name: 'About', path: '#about' },
+            { name: 'Projects', path: '#projects' },
+            { name: 'Contact', path: '#contact' },
+        ],
+        [],
+    );
 
     // Logic để xác định mục active khi cuộn trang
     useEffect(() => {
@@ -76,13 +79,23 @@ function Navbar() {
                         </ul>
 
                         {/* Nút menu mobile */}
-                        <div className="md:hidden">
+                        <div className="md:hidden mt-1.5">
                             <button
                                 className="text-gray-800 hover:text-green-600 transition-colors duration-300 cursor-pointer"
                                 onClick={() => setIsOpen(!isOpen)}
                                 aria-label="Toggle menu"
                             >
-                                {isOpen ? <X size={28} /> : <Menu size={28} />}
+                                <AnimatePresence mode="wait" initial={false}>
+                                    <motion.div
+                                        key={isOpen ? 'close' : 'open'}
+                                        initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                                        animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                        exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                                        transition={{ duration: 0.15 }}
+                                    >
+                                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                                    </motion.div>
+                                </AnimatePresence>
                             </button>
                         </div>
                     </div>
@@ -105,7 +118,7 @@ function Navbar() {
                                     <a
                                         href={item.path}
                                         onClick={() => setIsOpen(false)}
-                                        className={`block w-full text-center text-lg font-medium py-3 rounded-md transition-colors duration-300 ${
+                                        className={`block w-full text-center md:text-lg font-medium py-3 rounded-md transition-colors duration-300 ${
                                             activeSection === item.path.substring(1)
                                                 ? 'bg-green-100 text-green-700'
                                                 : 'text-gray-700 hover:bg-gray-100'

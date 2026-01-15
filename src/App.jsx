@@ -13,16 +13,16 @@ function App() {
             <Toaster position="top-center" />
             <Navbar />
             <main className="grow">
-                <div id="home">
+                <div id="home" className="scroll-mt-28">
                     <Home />
                 </div>
-                <div id="about">
+                <div id="about" className="scroll-mt-8">
                     <About />
                 </div>
-                <div id="projects">
+                <div id="projects" className="scroll-mt-0">
                     <Projects />
                 </div>
-                <div id="contact">
+                <div id="contact" className="scroll-mt-6">
                     <Contact />
                 </div>
             </main>

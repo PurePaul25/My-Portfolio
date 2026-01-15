@@ -22,7 +22,7 @@ const itemVariants = {
 
 function Home() {
     return (
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-50 my-20">
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-50 my-16">
             {/* Background Gradient */}
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px]"></div>
 
@@ -55,7 +55,10 @@ function Home() {
                         </h1>
                     </motion.div>
 
-                    <motion.p variants={itemVariants} className="text-gray-600 text-lg max-w-lg mx-auto md:mx-0 mt-5">
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-gray-600 md:text-lg max-w-lg mx-auto md:mx-0 mt-5"
+                    >
                         Passionate about building complete, scalable, and user-centric web applications from front to
                         back.
                     </motion.p>
@@ -64,7 +67,7 @@ function Home() {
                         <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
                             <a
                                 href="#projects"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-all duration-300"
+                                className="inline-flex text-[15px] md:text-base items-center gap-2 px-6 py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-all duration-300"
                             >
                                 My Projects <ArrowRight size={20} />
                             </a>
@@ -72,7 +75,7 @@ function Home() {
                         <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
                             <a
                                 href="#contact"
-                                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-green-600 text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300"
+                                className="inline-flex text-[15px] md:text-base items-center gap-2 px-6 py-3 border-2 border-green-600 text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300"
                             >
                                 Contact Me <Mail size={20} />
                             </a>

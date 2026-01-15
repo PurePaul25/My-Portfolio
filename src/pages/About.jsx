@@ -74,9 +74,9 @@ function About() {
     return (
         <div className="relative bg-gray-50 overflow-hidden">
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px]"></div>
-            <section className="max-w-6xl mx-auto px-6 pt-28 pb-20">
+            <section className="max-w-6xl mx-auto px-6 pt-20 pb-20">
                 {/* --- Header Section --- */}
-                <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div className="grid md:grid-cols-2 gap-8 items-center mb-18">
                     {/* Left: Text Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -86,7 +86,7 @@ function About() {
                         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
                             About <span className="text-green-600">Me</span>
                         </h1>
-                        <p className="text-lg text-gray-600 leading-relaxed">
+                        <p className="text-lg text-gray-600 leading-relaxed text-justify">
                             I'm a passionate <span className="font-semibold text-green-600">Fullstack Developer</span>{' '}
                             who loves building complete web applications — from designing the user interface to
                             developing backend logic. My goal is to create fast, reliable, and visually engaging digital
@@ -115,7 +115,7 @@ function About() {
 
                 {/* --- Skills Section --- */}
                 <div className="mb-20">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">My Technical Skills</h2>
+                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">My Technical Skills</h2>
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -139,7 +139,7 @@ function About() {
 
                 {/* --- Timeline Section --- */}
                 <div>
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">My Story</h2>
+                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">My Story</h2>
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"

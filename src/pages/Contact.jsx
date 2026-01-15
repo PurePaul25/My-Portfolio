@@ -48,7 +48,7 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative py-28 px-6 lg:px-24 bg-gray-900 text-white overflow-hidden">
+        <section id="contact" className="relative py-20 px-6 lg:px-24 bg-gray-900 text-white overflow-hidden">
             {/* Background Grid */}
             <div className="absolute inset-0 -z-10 h-full w-full bg-gray-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
 
@@ -56,13 +56,13 @@ export default function Contact() {
                 <h2 className="text-4xl md:text-5xl font-extrabold text-white">
                     Get In <span className="text-green-500">Touch</span>
                 </h2>
-                <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
+                <p className="md:text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
                     I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
                     visions.
                 </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
                 {/* LEFT: Info */}
                 <motion.div
                     variants={containerVariants}
@@ -71,12 +71,12 @@ export default function Contact() {
                     viewport={{ once: true, amount: 0.3 }}
                     className="space-y-8"
                 >
-                    <motion.p variants={itemVariants} className="text-gray-300 text-lg leading-relaxed">
+                    <motion.p variants={itemVariants} className="text-gray-300 md:text-lg leading-relaxed">
                         Have a project in mind or just want to say hello? My inbox is always open. Whether you have a
                         question or just want to connect, feel free to reach out!
                     </motion.p>
 
-                    <motion.div variants={itemVariants} className="space-y-5 text-gray-300">
+                    <motion.div variants={itemVariants} className="space-y-4 text-gray-300">
                         <a
                             href="mailto:phatlenguyenthanh4@gmail.com"
                             className="flex items-center gap-4 p-3 rounded-lg transition-colors hover:bg-gray-800"
@@ -105,7 +105,7 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-gray-700 space-y-6"
+                    className="bg-gray-800/50 backdrop-blur-sm px-5 py-6 rounded-2xl shadow-2xl border border-gray-700 space-y-6"
                 >
                     <div className="relative group">
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-green-500 transition-colors duration-300" />
