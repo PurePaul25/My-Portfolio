@@ -3,8 +3,9 @@ import { Menu, X } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Navbar() {
+function Navbar({ shouldAnimate = false }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [hasAnimated, setHasAnimated] = useState(false);
 
     // State để theo dõi mục nào đang active
     const [activeSection, setActiveSection] = useState('home');
@@ -18,6 +19,13 @@ function Navbar() {
         ],
         [],
     );
+
+    // Handle animation khi shouldAnimate thay đổi
+    useEffect(() => {
+        if (shouldAnimate && !hasAnimated) {
+            setHasAnimated(true);
+        }
+    }, [shouldAnimate, hasAnimated]);
 
     // Logic để xác định mục active khi cuộn trang
     useEffect(() => {
@@ -40,23 +48,68 @@ function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [navItems]);
 
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.12,
+                delayChildren: 0.65, // Wait for intro slide animation to start
+            },
+        },
+    };
+
+    const logoVariants = {
+        hidden: { opacity: 0, y: -15 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                ease: 'easeOut',
+                delay: 0.65,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: -15 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                ease: 'easeOut',
+            },
+        },
+    };
+
     return (
         <>
             <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         {/* Logo */}
-                        <a
+                        <motion.a
                             href="#home"
                             className="text-2xl font-bold text-green-600 hover:opacity-80 transition-opacity"
+                            variants={logoVariants}
+                            initial="hidden"
+                            animate={hasAnimated ? 'visible' : 'hidden'}
                         >
                             Paul<span className="text-gray-800"> Portfolio</span>
-                        </a>
+                        </motion.a>
 
                         {/* Menu cho màn hình lớn */}
-                        <ul className="hidden md:flex items-center space-x-8">
+                        <motion.ul
+                            className="hidden md:flex items-center space-x-8"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate={hasAnimated ? 'visible' : 'hidden'}
+                        >
                             {navItems.map((item) => (
-                                <li key={item.name} className="relative py-2">
+                                <motion.li key={item.name} className="relative py-2" variants={itemVariants}>
                                     <a
                                         href={item.path}
                                         className={`font-medium transition-colors duration-300 ${
@@ -74,9 +127,9 @@ function Navbar() {
                                             transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                                         />
                                     )}
-                                </li>
+                                </motion.li>
                             ))}
-                        </ul>
+                        </motion.ul>
 
                         {/* Nút menu mobile */}
                         <div className="md:hidden mt-1.5">
