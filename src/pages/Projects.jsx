@@ -1,5 +1,6 @@
 import { Github, ExternalLink } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { useLanguage } from '../hooks/useLanguage';
 
 import projectMusicPlayer from '../assets/project-music-player.png';
 import projectFoodHubClone from '../assets/project-food-hub.png';
@@ -9,50 +10,6 @@ import projectFreshFoodsOnline from '../assets/project-fresh-foods-online.png';
 
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-
-const projects = [
-    {
-        title: 'Music Player Web App',
-        description: 'An online music player using HTML, CSS, and JavaScript to manage song data.',
-        image: projectMusicPlayer,
-        tech: ['JavaScript', 'HTML', 'CSS'],
-        github: 'https://github.com/PurePaul25/Phat-Music-Library',
-        demo: 'https://purepaul25.github.io/Phat-Music-Library/',
-    },
-    {
-        title: 'Food Hub Website',
-        description: 'A food delivery app built with HTML and CSS, featuring a beautiful UI and smooth animations.',
-        image: projectFoodHubClone,
-        tech: ['HTML', 'CSS', 'JavaScript'],
-        github: 'https://github.com/PurePaul25/FoodHubWebsite',
-        demo: 'https://purepaul25.github.io/FoodHubWebsite/Frontend/',
-    },
-    {
-        title: 'Quiz Master Website',
-        description:
-            'A full-stack quiz application (React + Node + MongoDB) with user authentication and question management.',
-        image: projectQuizMaster,
-        tech: ['React', 'Node.js', 'MongoDB', 'CSS'],
-        github: 'https://github.com/PurePaul25/Quiz-Game-Website',
-        demo: 'https://quiz-game-website-six.vercel.app/',
-    },
-    {
-        title: 'Sakae Japanese Education Thu Duc',
-        description: 'A full-stack website for a Japanese language center built with Vite React and Tailwind CSS.',
-        image: projectSakaeEducation,
-        tech: ['Vite', 'React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
-        github: 'https://github.com/PurePaul25/Sakae-Japanese-Education-Thu-Duc-Clone',
-        demo: 'https://sakae-japanese-education-thu-duc.vercel.app/',
-    },
-    {
-        title: 'Fresh Foods Online E-commerce',
-        description: 'An e-commerce website for fresh foods built with React and Tailwind CSS.',
-        image: projectFreshFoodsOnline,
-        tech: ['React', 'Tailwind CSS', 'Vite', 'Node.js', 'MongoDB'],
-        github: 'https://github.com/PurePaul25/Fresh-Foods-Online---Market4P',
-        demo: 'https://fresh-foods-online-market4p.vercel.app/',
-    },
-];
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,10 +27,54 @@ const itemVariants = {
 };
 
 export default function Projects() {
+    const { t } = useLanguage();
     const sliderRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+
+    const projects = [
+        {
+            title: t.projects.musicPlayer.title,
+            description: t.projects.musicPlayer.description,
+            image: projectMusicPlayer,
+            tech: ['JavaScript', 'HTML', 'CSS'],
+            github: 'https://github.com/PurePaul25/Phat-Music-Library',
+            demo: 'https://purepaul25.github.io/Phat-Music-Library/',
+        },
+        {
+            title: t.projects.foodHub.title,
+            description: t.projects.foodHub.description,
+            image: projectFoodHubClone,
+            tech: ['HTML', 'CSS', 'JavaScript'],
+            github: 'https://github.com/PurePaul25/FoodHubWebsite',
+            demo: 'https://purepaul25.github.io/FoodHubWebsite/Frontend/',
+        },
+        {
+            title: t.projects.quizMaster.title,
+            description: t.projects.quizMaster.description,
+            image: projectQuizMaster,
+            tech: ['React', 'Node.js', 'MongoDB', 'CSS'],
+            github: 'https://github.com/PurePaul25/Quiz-Game-Website',
+            demo: 'https://quiz-game-website-six.vercel.app/',
+        },
+        {
+            title: t.projects.sakae.title,
+            description: t.projects.sakae.description,
+            image: projectSakaeEducation,
+            tech: ['Vite', 'React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+            github: 'https://github.com/PurePaul25/Sakae-Japanese-Education-Thu-Duc-Clone',
+            demo: 'https://sakae-japanese-education-thu-duc.vercel.app/',
+        },
+        {
+            title: t.projects.freshFoods.title,
+            description: t.projects.freshFoods.description,
+            image: projectFreshFoodsOnline,
+            tech: ['React', 'Tailwind CSS', 'Vite', 'Node.js', 'MongoDB'],
+            github: 'https://github.com/PurePaul25/Fresh-Foods-Online---Market4P',
+            demo: 'https://fresh-foods-online-market4p.vercel.app/',
+        },
+    ];
 
     const handleMouseDown = (e) => {
         if (!sliderRef.current) return;
@@ -116,11 +117,9 @@ export default function Projects() {
             <div className="max-w-6xl mx-auto px-4">
                 <div className="text-center mb-10">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800">
-                        My <span className="text-green-600">Projects</span>
+                        {t.projects.title} <span className="text-green-600">{t.projects.name}</span>
                     </h2>
-                    <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                        A few projects I've built to practice my skills and apply what I've learned.
-                    </p>
+                    <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">{t.projects.description}</p>
                 </div>
                 <div className="relative">
                     {/* Lớp phủ mờ bên trái */}
@@ -188,7 +187,7 @@ export default function Projects() {
                                             href={p.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex-1 text-center py-2.5 px-4 bg-white/90 text-gray-900 font-semibold rounded-lg hover:bg-white transition-all duration-300 flex items-center justify-center gap-2"
+                                            className="flex-1 text-center py-1.5 px-3 bg-white/90 text-gray-900 font-semibold rounded-lg hover:bg-white transition-all duration-300 flex items-center justify-center gap-2"
                                         >
                                             <Github size={18} /> GitHub
                                         </a>
@@ -198,7 +197,7 @@ export default function Projects() {
                                             rel="noopener noreferrer"
                                             className="flex-1 text-center py-2.5 px-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-all duration-300 flex items-center justify-center gap-2"
                                         >
-                                            <ExternalLink size={18} /> Demo
+                                            <ExternalLink size={18} /> {t.projects.demo}
                                         </a>
                                     </div>
                                 </div>

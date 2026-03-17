@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useLanguage } from '../hooks/useLanguage';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 function Intro({ onFinish }) {
+    const { t } = useLanguage();
     const [displayedText, setDisplayedText] = useState('');
     const [lineIndex, setLineIndex] = useState(0);
     const [showSpinner, setShowSpinner] = useState(false);
 
-    const lines = ['Welcome to My Portfolio', "Let's explore my work together"];
+    const lines = [t.intro.welcome, t.intro.explore];
     const currentLine = lines[lineIndex];
 
     // Typing animation

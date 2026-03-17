@@ -1,14 +1,16 @@
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { GoMail } from 'react-icons/go';
+import { useLanguage } from '../../hooks/useLanguage';
 
 function Footer() {
+    const { t } = useLanguage();
     const year = new Date().getFullYear();
 
     const navItems = [
-        { name: 'Home', path: '#home' },
-        { name: 'About', path: '#about' },
-        { name: 'Projects', path: '#projects' },
-        { name: 'Contact', path: '#contact' },
+        { name: t.nav.home, path: '#home' },
+        { name: t.nav.about, path: '#about' },
+        { name: t.nav.projects, path: '#projects' },
+        { name: t.nav.contact, path: '#contact' },
     ];
 
     const techStack = ['React', 'Node.js', 'Tailwind CSS', 'Framer Motion', 'MongoDB', 'Express'];
@@ -29,10 +31,7 @@ function Footer() {
                         <h3 className="text-3xl font-bold text-white tracking-tight text-center md:text-left">
                             Paul<span className="text-green-500"> Portfolio</span>
                         </h3>
-                        <p className="text-gray-400 leading-relaxed">
-                            A fullstack developer passionate about building complete, scalable, and user-centric web
-                            applications using the MERN stack.
-                        </p>
+                        <p className="text-gray-400 leading-relaxed text-center md:text-left">{t.footer.description}</p>
                         <div className="flex space-x-4 justify-center md:justify-start">
                             <a
                                 href="https://github.com/PurePaul25"
@@ -53,14 +52,14 @@ function Footer() {
 
                     {/* Column 2: Services (New Content) */}
                     <div>
-                        <h4 className="text-xl font-semibold text-white mb-8 mt-1 text-center md:text-left">
-                            Tech Stack
+                        <h4 className="text-2xl font-semibold text-white mb-7 mt-0.5 text-center md:text-left">
+                            {t.footer.techStack}
                         </h4>
                         <ul className="space-y-3 flex flex-col items-center md:items-start">
                             {techStack.map((tech) => (
                                 <li
                                     key={tech}
-                                    className="text-sm cursor-pointer text-gray-400 hover:text-green-400 transition-colors"
+                                    className="text-base sm:text-sm cursor-pointer text-gray-400 hover:text-green-400 transition-colors"
                                 >
                                     {tech}
                                 </li>
@@ -70,15 +69,15 @@ function Footer() {
 
                     {/* Column 3: Quick Links */}
                     <div>
-                        <h4 className="text-xl font-semibold text-white mb-6 mt-1 text-center md:text-left">
-                            Quick Links
+                        <h4 className="text-2xl font-semibold text-white mb-5.5 mt-0.5 text-center md:text-left">
+                            {t.footer.quickLinks}
                         </h4>
                         <ul className="space-y-3 flex flex-col items-center md:items-start">
                             {navItems.map((item) => (
                                 <li key={item.name}>
                                     <a
                                         href={item.path}
-                                        className="text-sm text-gray-400 hover:text-green-400 transition-colors inline-flex items-center group"
+                                        className="text-base sm:text-sm text-gray-400 hover:text-green-400 transition-colors inline-flex items-center group"
                                     >
                                         <span className="w-0 group-hover:w-2 h-px bg-green-400 mr-0 group-hover:mr-2 transition-all duration-300"></span>
                                         {item.name}
@@ -90,23 +89,21 @@ function Footer() {
 
                     {/* Column 4: Newsletter (New Content) */}
                     <div>
-                        <h4 className="text-xl font-semibold text-white mb-6 mt-1 text-center md:text-left">
-                            Newsletter
+                        <h4 className="text-2xl font-semibold text-white mb-6 mt-0.5 text-center md:text-left">
+                            {t.footer.newsletter}
                         </h4>
-                        <p className="text-gray-400 text-sm mb-4 text-center md:text-left">
-                            Subscribe to get the latest updates and news.
-                        </p>
+                        <p className="text-gray-400 text-sm mb-4 text-center md:text-left">{t.footer.subscribeDesc}</p>
                         <form className="flex flex-col space-y-3" onSubmit={(e) => e.preventDefault()}>
                             <input
                                 type="email"
-                                placeholder="Enter your email"
+                                placeholder={t.footer.emailPlaceholder}
                                 className="bg-gray-800 border outline-none border-gray-700 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-500 transition duration-200"
                             />
                             <button
                                 type="submit"
                                 className="w-full cursor-pointer bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors shadow-lg shadow-green-600/20"
                             >
-                                Subscribe
+                                {t.footer.subscribeBtn}
                             </button>
                         </form>
                     </div>
@@ -114,14 +111,14 @@ function Footer() {
 
                 <div className="border-t border-gray-800 pt-6 flex flex-col-reverse md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-500 text-sm text-center md:text-left">
-                        &copy; {year} <span className="text-white font-medium">Pure Paul</span>. All rights reserved.
+                        &copy; {year} <span className="text-white font-medium">Pure Paul</span>. {t.footer.rights}
                     </p>
                     <div className="flex space-x-6 text-sm text-gray-500">
                         <a href="#" className="hover:text-white transition-colors">
-                            Privacy Policy
+                            {t.footer.privacy}
                         </a>
                         <a href="#" className="hover:text-white transition-colors">
-                            Terms of Service
+                            {t.footer.terms}
                         </a>
                     </div>
                 </div>

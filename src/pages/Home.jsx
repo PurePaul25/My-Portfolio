@@ -1,6 +1,7 @@
 import heroImg from '../assets/undraw_code-review_jdgp.svg';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowRight, Mail } from 'lucide-react';
+import { useLanguage } from '../hooks/useLanguage';
 
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
@@ -21,6 +22,9 @@ const itemVariants = {
 };
 
 function Home() {
+    const { t } = useLanguage();
+
+    const roles = [t.home.roles.frontend, t.home.roles.backend, t.home.roles.fullstack];
     return (
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-50 my-16">
             {/* Background Gradient */}
@@ -36,17 +40,10 @@ function Home() {
                 >
                     <motion.div variants={itemVariants}>
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 leading-tight">
-                            Hi, I'm <span className="text-green-600">Pure Paul</span> 👋
+                            {t.home.greeting} <span className="text-green-600">{t.home.name}</span> 👋
                             <br />
                             <TypeAnimation
-                                sequence={[
-                                    'A Frontend Developer',
-                                    2000,
-                                    'A Backend Developer',
-                                    2000,
-                                    'A Fullstack Developer',
-                                    3000,
-                                ]}
+                                sequence={[roles[0], 2000, roles[1], 2000, roles[2], 3000]}
                                 wrapper="span"
                                 speed={50}
                                 className="text-green-500"
@@ -59,8 +56,7 @@ function Home() {
                         variants={itemVariants}
                         className="text-gray-600 md:text-lg max-w-lg mx-auto md:mx-0 mt-5"
                     >
-                        Passionate about building complete, scalable, and user-centric web applications from front to
-                        back.
+                        {t.home.description}
                     </motion.p>
 
                     <motion.div variants={itemVariants} className="flex justify-center md:justify-start space-x-4 mt-8">
@@ -69,7 +65,7 @@ function Home() {
                                 href="#projects"
                                 className="inline-flex text-[15px] md:text-base items-center gap-2 px-6 py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-all duration-300"
                             >
-                                My Projects <ArrowRight size={20} />
+                                {t.home.viewProjects} <ArrowRight size={20} />
                             </a>
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
@@ -77,7 +73,7 @@ function Home() {
                                 href="#contact"
                                 className="inline-flex text-[15px] md:text-base items-center gap-2 px-6 py-3 border-2 border-green-600 text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300"
                             >
-                                Contact Me <Mail size={20} />
+                                {t.home.contactMe} <Mail size={20} />
                             </a>
                         </motion.div>
                     </motion.div>
